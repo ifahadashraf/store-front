@@ -153,7 +153,118 @@ class ProductDescription extends React.Component<
     return quantity !== 0 && variant && variantStock >= syncedQuantityWithCart;
   };
 
+  getNewView = (name, quantity) => (
+    <>
+      <h2 className="fw-bold playFairDisplay text_color_1 mb-3 fs-25">
+        {name}
+      </h2>
+      <div className="fw-light fs-16 lh-30 text_color_5 mb-3">
+        <span>{this.getProductPrice()}</span>
+        <br />
+        <div className="pull-mob-left">
+          <span>= £23.10</span>
+        </div>
+        <div className="pull-mob-right mt-sm-2">
+          <span>including 20% VAT</span>
+        </div>
+        <div className="clearfix"></div>
+      </div>
+      <form method="post" action="cart.html">
+        <div className="mob_order_div">
+          <h3 className="fw-bold openSans text_color_5 mb-2 fs-16 order2">
+            Size
+          </h3>
+          <div className="radio_selector sizesSelctor pull-left mr-sm-3 mb-2 order3">
+            <input type="radio" id="250g" name="productSize" value="250g" />
+            <label>250g</label>
+            <input
+              type="radio"
+              id="500g"
+              name="productSize"
+              value="500g"
+              checked
+            />
+            <label>500g</label>
+            <input type="radio" id="750g" name="productSize" value="750g" />
+            <label>750g</label>
+            <input type="radio" id="1kg" name="productSize" value="1kg" />
+            <label>1kg</label>
+          </div>
+          <div className="radio_selector typeSelector pull-left order1 mb-3">
+            <input
+              type="radio"
+              id="looseTea"
+              name="productType"
+              value="Loose Tea"
+              checked
+            />
+            <label>Loose Tea</label>
+            <input
+              type="radio"
+              id="teaBags"
+              name="productType"
+              value="Tea Bags"
+            />
+            <label>Tea Bags</label>
+          </div>
+          <div className="clearfix"></div>
+          <div className="fw-bold fs-12 lh-30 text_color_5 openSans order4">
+            <span>SKU: EI100595</span>
+          </div>
+        </div>
+        <div className="mt-3">
+          <h3 className="fw-bold openSans text_color_5 mb-2 fs-16">Quantity</h3>
+          {/* <TextField
+            type="number"
+            min="1"
+            value={quantity || ""}
+            onChange={e =>
+              this.setState({ quantity: Math.max(1, Number(e.target.value)) })
+            }
+          /> */}
+          <div className="pull-left mr-sm-3 mr-mob-1 mb-mob-1">
+            <div className="quantity_checker">
+              <input
+                type="number"
+                className="height39 rounded-10"
+                placeholder="10"
+                value={quantity || ""}
+                onChange={e =>
+                  this.setState({
+                    quantity: Math.max(1, Number(e.target.value)),
+                  })
+                }
+              />
+            </div>
+          </div>
+          {/* <div className="pull-left btn_1 mt-md-0 mt-lg-0">
+            <button className="bg_color_3 text-white openSans fw-regular fs-13 rounded-12 border-0 height39">
+              Add to Cart
+            </button>
+          </div> */}
+          <CartContext.Consumer>
+            {({ lines }) => (
+              <AddToCart
+                onSubmit={this.handleSubmit}
+                lines={lines}
+                disabled={!this.canAddToCart(lines)}
+              />
+            )}
+          </CartContext.Consumer>
+          <div className="clearfix"></div>
+        </div>
+      </form>
+    </>
+  );
+
   render() {
+    const { name } = this.props;
+    const { quantity } = this.state;
+
+    return this.getNewView(name, quantity);
+  }
+
+  render1() {
     const { children, name, selectedAttributes } = this.props;
     const { quantity } = this.state;
 
@@ -182,7 +293,12 @@ class ProductDescription extends React.Component<
             selectSidebar={true}
           />
         </div>
-        <div className="product-description__quantity-input">
+        <div
+          className="product-description__quantity-input"
+          style={{
+            display: "flex",
+          }}
+        >
           <TextField
             type="number"
             label="Quantity"
@@ -192,20 +308,20 @@ class ProductDescription extends React.Component<
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />
+          <CartContext.Consumer>
+            {({ lines }) => (
+              <AddToCart
+                onSubmit={this.handleSubmit}
+                lines={lines}
+                disabled={!this.canAddToCart(lines)}
+              />
+            )}
+          </CartContext.Consumer>
         </div>
         <div className="product-description__about">
           <h4>Description</h4>
           {children}
         </div>
-        <CartContext.Consumer>
-          {({ lines }) => (
-            <AddToCart
-              onSubmit={this.handleSubmit}
-              lines={lines}
-              disabled={!this.canAddToCart(lines)}
-            />
-          )}
-        </CartContext.Consumer>
       </div>
     );
   }

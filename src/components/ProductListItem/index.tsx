@@ -42,9 +42,21 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       <div className="product-list-item__image">
         <Thumbnail source={product} />
       </div>
-      <h4 className="product-list-item__title">{product.name}</h4>
-      <p className="product-list-item__category">{category.name}</p>
-      <p className="product-list-item__price">{localized}</p>
+      <h4
+        className="product-list-item__title w-bold fs-16 playFairDisplay text_color_1"
+        style={{ textAlign: "center" }}
+      >
+        {product.name}
+      </h4>
+      <p
+        className="product-list-item__category"
+        style={{ textAlign: "center" }}
+      >
+        {category.name}
+      </p>
+      <p className="product-list-item__price" style={{ display: "none" }}>
+        {localized}
+      </p>
     </div>
   );
 };

@@ -140,6 +140,12 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               }
             </Media>
           </div>
+          <div className="col-lg-12 title_bar_center pl-lg-0 pr-lg-0">
+            <h2 className="fw-bold title_size_25 tab_title_size_25 mob_title_size_30 playFairDisplay text_color_1 mt-2 mb-3 pb-2 mb-lg-4 text-center pl-sm-3 pr-sm-3 pl-md-5 pr-md-5">
+              Description
+            </h2>
+            <RichTextContent descriptionJson={product.descriptionJson} />
+          </div>
         </div>
         <OtherProducts products={product.category.products.edges} />
       </div>

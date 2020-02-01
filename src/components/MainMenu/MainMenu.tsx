@@ -1,6 +1,6 @@
 import {
   mediumScreen,
-  smallScreen
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
@@ -18,7 +18,7 @@ import {
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
 import { maybe } from "../../core/utils";
 import {
@@ -26,7 +26,7 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
+  paymentOptionsUrl,
 } from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
@@ -35,7 +35,7 @@ import { TypedMainMenuQuery } from "./queries";
 import cartImg from "../../images/cart.svg";
 import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import hamburgerImg from "../../images/hamburger.svg";
-import logoImg from "../../images/logo.svg";
+// import logoImg from "../../images/logo.svg";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
@@ -96,7 +96,14 @@ const MainMenu: React.FC = () => {
 
           <div className="main-menu__center">
             <Link to={baseUrl}>
-              <ReactSVG path={logoImg} />
+              {/* <ReactSVG path={logoImg} /> */}
+              <img
+                src="/src/img/logo.png"
+                style={{
+                  marginLeft: "120px",
+                  width: "22%",
+                }}
+              />
             </Link>
           </div>
 

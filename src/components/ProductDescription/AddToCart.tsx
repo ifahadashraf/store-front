@@ -25,8 +25,27 @@ const AddToCart: React.FC<{
           }}
         >
           {(createCheckout, { loading: mutationLoading }) => (
+            // <div className="pull-left btn_1 mt-md-0 mt-lg-0">
+            //   <button
+            //     className="bg_color_3 text-white openSans fw-regular fs-13 rounded-12 border-0 height39"
+            //     onClick={() => {
+            //       if (user && !checkout) {
+            //         createCheckout({
+            //           variables: {
+            //             checkoutInput: { email: user.email, lines },
+            //           },
+            //         });
+            //       } else {
+            //         onSubmit();
+            //       }
+            //     }}
+            //     disabled={disabled || mutationLoading || checkoutLoading}
+            //   >
+            //     Add to Cart
+            //   </button>
+            // </div>
             <AddToCartButton
-              className="product-description__action"
+              className="bg_color_3"
               onClick={() => {
                 if (user && !checkout) {
                   createCheckout({
@@ -38,9 +57,9 @@ const AddToCart: React.FC<{
                   onSubmit();
                 }
               }}
-              disabled={disabled || mutationLoading || checkoutLoading}
+              // disabled={disabled || mutationLoading || checkoutLoading}
             >
-              Add to basket
+              Add to cart
             </AddToCartButton>
           )}
         </TypedCreateCheckoutMutation>
